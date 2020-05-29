@@ -1,0 +1,91 @@
+
+body {
+  /* background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%); */
+  /* background: linear-gradient(110deg, #ffda90 60%, #ef3d5582 60%); */
+  background-image: linear-gradient(
+    135deg,
+    rgb(240, 233, 220) 0%,
+    rgb(228, 186, 186) 69%,
+    rgb(218, 176, 212) 89%
+  ) !important;
+  
+}
+.ui.inverted.top.fixed.menu {
+  background-image: linear-gradient(
+    135deg,
+    rgb(24, 42, 115) 0%,
+    rgb(33, 138, 174) 69%,
+    rgb(32, 167, 172) 89%
+  ) !important;
+}
+
+.grid {
+  float: left;
+  border: 2px solid rgb(19, 216, 85);
+  background-color: rgb(149, 247, 247)
+  /* margin: 2px; */
+  /* margin-right: 7px; */
+}
+
+.player-one {
+  background-image: linear-gradient(
+    135deg,
+    rgb(247, 225, 185) 0%,
+    rgb(236, 61, 61) 69%,
+    rgb(248, 163, 237) 89%
+  ) !important;
+}
+
+.player-two {
+  background-image: linear-gradient(
+    135deg,
+    rgb(24, 42, 115) 0%,
+    rgb(33, 138, 174) 69%,
+    rgb(32, 167, 172) 89%
+  ) !important;
+  
+}
+
+.arrow {
+  background-image: url(./images/arrow.png);
+  background-size: contain;
+  background-position: center;
+}
+
+.axe {
+  background-image: url(./images/axe.png);
+  background-size: contain;
+  background-position: center;
+}
+
+.shield {
+  background-image: url(./images/shield.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.thor {
+  background-image: url(./images/thor.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.blocker {
+  background-color: grey;
+}
+
+.viking1 {
+  background-image: url(./images/viking1.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.viking2 {
+  background-image: url(./images/viking2.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
