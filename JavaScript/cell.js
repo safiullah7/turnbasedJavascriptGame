@@ -23,29 +23,27 @@ export default class Cell {
     }
     Generate(id) {
         let cell = document.createElement('div');
-        cell.id = id;
-        cell.style.height = this.height;
-        cell.style.width = this.width;
-        cell.classList.add("grid");
-        // cell.textContent = `${this.x} : ${this.y}`;
+        $(cell).attr("id", id);
+        $(cell).css("height", this.height);
+        $(cell).css("width", this.width);
+        $(cell).addClass("grid");
         this.html = cell;
         return cell;
     }
     setBackgroundBlocker() {
         this.blocker = true;
-        this.html.classList.add('blocker');
+        // this.html.classList.add('blocker');
+        $(this.html).addClass("blocker");
     }
     setWeapon(className) {
         this.weapon = new Weapon()
         this.weapon.setWeaponTypeFromClass(className);
-        // this.weapon.setWeapon(cell);
         console.log(className);
-        // let element = this.html;
-        // element.classList.add(className);
-        // this.html = element;
-        this.html.classList.add(className);
+        // this.html.classList.add(className);
+        $(this.html).addClass(className);
     }
     setPlayer(cssClass) {
-        this.html.classList.add(cssClass);
+        // this.html.classList.add(cssClass);
+        $(this.html).addClass(cssClass);
     }
 }
