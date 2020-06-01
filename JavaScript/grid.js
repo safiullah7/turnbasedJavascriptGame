@@ -24,6 +24,14 @@ export default class Grid {
         this.RandomPlayers();
     }
 
+    CheckCoordinates(x, y) {
+        if (x > 9 || x < 0 || y > 9 || y < 0)
+            return false;
+        return true;
+    }
+
+    
+
     RandomPlayers() {
         let randomIndex1 = Math.floor(Math.random() * this.arrayCells.length);
         let randomCell1 = this.arrayCells[randomIndex1];
@@ -61,7 +69,6 @@ export default class Grid {
             this.arrayCells.splice(randomeIndex, 1);
         }
     }
-// method to check if a cell exists. turn k wqt possible k k cell board se bhr ka ban raha ho 
     CheckTwoCellsAdjacent(cell1, cell2) {
         return (Math.abs(cell1.x - cell2.x) + Math.abs(cell1.y - cell2.y)) == 1;
     }
