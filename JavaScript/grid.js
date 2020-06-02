@@ -30,7 +30,14 @@ export default class Grid {
         return true;
     }
 
-    
+    FindAccessibleCellsOfCell(cell, x, y, distance) {
+        if (x === 1 && y === 0) { // right
+            
+        } else if (x === 0 && y === 1) { // up
+        } else if (x === -1 && y === 0) { // left
+        } else if (x === 0 && y === -1) { // down
+        }
+    }
 
     RandomPlayers() {
         let randomIndex1 = Math.floor(Math.random() * this.arrayCells.length);
