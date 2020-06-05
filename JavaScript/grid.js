@@ -22,6 +22,8 @@ export default class Grid {
         this.RandomBlockages();
         this.RandomWeapons();
         this.RandomPlayers();
+
+        this.FindAccessibleCellsOfCell(this.totalCells[44], 0, -1);
     }
 
     CheckCoordinates(x, y) {
@@ -30,19 +32,72 @@ export default class Grid {
         return true;
     }
 
-    FindAccessibleCellsOfCell(cell, x, y, distance) {
+    FindAccessibleCellsOfCell(cell, x, y) {
+        let cells = null;
         if (x === 1 && y === 0) { // right
-            
+            let cellY = [cell.y];
+            let cell1 = cell.y + 1;
+            let cell2 = cell.y + 2;
+            let cell3 = cell.y + 3;
+            cells = this.totalCells.filter(c => c.x == cell.x && ([c.y].includes(cell1) || [c.y].includes(cell2) || [c.y].includes(cell3)));
+            // cells = cells[0].blocker || !this.CheckCoordinates(cells[0].x, cells[0].y) ? null : 
+            //             cells[1].blocker || !this.CheckCoordinates(cells[0].x, cells[0].y) ? [cells[0]] :
+            //                 cells[2].blocker || !this.CheckCoordinates(cells[0].x, cells[0].y) ? [cells[0], cells[1]] : cells;
+            cells = this.CheckAccessibleCellsBlockerOrPlayer(cells);
+            console.log(cells);
+            return cells;
         } else if (x === 0 && y === 1) { // up
+            let cellX = [cell.x];
+            let cell1 = cell.x - 1 ;
+            let cell2 = cell.x - 2;
+            let cell3 = cell.x - 3;
+            // issue here somewhere. 
+            cells = this.totalCells.filter(c => c.y == cell.y && ([c.x].includes(cell1) || [c.x].includes(cell2) || [c.x].includes(cell3)));
+            cells = this.CheckAccessibleCellsBlockerOrPlayer(cells.reverse());
+            console.log(cells);
+            return cells;
         } else if (x === -1 && y === 0) { // left
+            let cellY = [cell.y];
+            let cell1 = cell.y - 1;
+            let cell2 = cell.y - 2;
+            let cell3 = cell.y - 3;
+            cells = this.totalCells.filter(c => c.x == cell.x && ([c.y].includes(cell1) || [c.y].includes(cell2) || [c.y].includes(cell3)));
+            cells = this.CheckAccessibleCellsBlockerOrPlayer(cells.reverse());
+            console.log(cells);
+            return cells;
         } else if (x === 0 && y === -1) { // down
+            let cellX = [cell.x];
+            let cell1 = cell.y + 1;
+            let cell2 = cell.y + 2;
+            let cell3 = cell.y + 3;
+            cells = this.totalCells.filter(c => c.y == cell.y && ([c.x].includes(cell1) || [c.x].includes(cell2) || [c.x].includes(cell3)));
+            cells = this.CheckAccessibleCellsBlockerOrPlayer(cells);
+            console.log(cells);
+            return cells;
         }
+    }
+
+    CheckAccessibleCellsBlockerOrPlayer(cells) {
+        // let cellsToReturn = !this.CheckCoordinates(cells[0].x, cells[0].y) || cells[0].blocker || cells[0].player != null ? null : 
+        //                         !this.CheckCoordinates(cells[1].x, cells[1].y) || cells[1].blocker || cells[1].player != null ? [cells[0]] :
+        //                             !this.CheckCoordinates(cells[2].x, cells[2].y) || cells[2].blocker || cells[2].player != null ? [cells[0], cells[1]] : cells;
+        let cellsToReturn = [];
+        for(let i = 0; i < cells.length; i++) {
+            if (!cells[i].blocker && cells[i].player == null)
+            {
+                cellsToReturn.push(cells[i]);
+            }
+            else
+                break;
+        }    
+        return cellsToReturn;
     }
 
     RandomPlayers() {
         let randomIndex1 = Math.floor(Math.random() * this.arrayCells.length);
         let randomCell1 = this.arrayCells[randomIndex1];
         randomCell1.setPlayer(this.player1.avatar);
+        randomCell1.player = this.player1;
         this.player1.cell = randomCell1;
         this.arrayCells.splice(randomIndex1, 1);
         
@@ -54,6 +109,7 @@ export default class Grid {
         } while (this.CheckTwoCellsAdjacent(randomCell1, randomCell2))
 
         randomCell2.setPlayer(this.player2.avatar);
+        randomCell2.player = this.player2;
         this.player2.cell = randomCell2;
         this.arrayCells.splice(randomeIndex2, 1);
     }
