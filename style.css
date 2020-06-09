@@ -91,3 +91,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.accessible {
+  background-color: yellow;
+}
