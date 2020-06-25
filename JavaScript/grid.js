@@ -113,6 +113,7 @@ export default class Grid {
             this.player1.cell.player = null;
             this.player1.cell = cell;
             cell.player = this.player1;
+            cell.html.classList.add(this.player1.avatar);
             this.player1.cell.html.classList.add(this.player1.avatar);
             this.ActivateTurns('p2');
         } else if (p == 'p2') {
@@ -120,6 +121,7 @@ export default class Grid {
             this.player2.cell.player = null;
             this.player2.cell = cell;
             cell.player = this.player2;
+            cell.html.classList.add(this.player2.avatar);
             this.player2.cell.html.classList.add(this.player2.avatar);
             this.ActivateTurns('p1');
         }
@@ -135,14 +137,15 @@ export default class Grid {
     UnHighlightAccessibleCells(cells) {
         cells.forEach(cell => {
             cell.html.classList.remove('accessible');
+            $(cell.html).off("click");
         });
     }
 
     AddEventListenersToAccessibleCells(cells, p) {
         cells.forEach(cell => {
             $(cell.html).on('click', () => {
-                this.MovePlayerOnClickingCell(cell, p);
                 this.UnHighlightAccessibleCells(cells);
+                this.MovePlayerOnClickingCell(cell, p);
             });
         });
     }
