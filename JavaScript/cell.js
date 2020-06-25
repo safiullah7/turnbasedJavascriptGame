@@ -27,7 +27,7 @@ export default class Cell {
         $(cell).css("height", this.height);
         $(cell).css("width", this.width);
         $(cell).addClass("grid");
-        cell.textContent = `${this.x} : ${this.y}`;
+        // cell.textContent = `${this.x} : ${this.y}`;
         this.html = cell;
         return cell;
     }

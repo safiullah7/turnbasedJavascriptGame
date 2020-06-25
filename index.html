@@ -4,22 +4,83 @@
     <meta charset="utf-8" />
     <title>Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
     <script type="module" src="./JavaScript/main.js"></script>
   </head>
   <body>
     <div class="container-fluid">
+      <!-- Modal -->
+      <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="instructionsModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <h1 class="d-flex justify-content-center display-3">Turn based game</h1>
       <div class="row">
         <div class="col-md-3 text-white" style="height: 570px; border: 2px solid white;">
-          player 1
+          <div class="d-flex justify-content-center h4">
+            PLAYER 1
+          </div>
+          <div>
+            Your Avatar is: <img src="./images/viking1.png" />
+          </div>
+          <br>
+          <div class="player1ProgressBar">
+            <progress id="p1PB" value="10" max="100"></progress>
+          </div>
+          <br>
+          <div>
+            <button id="p1Attack" type="button" class="btn btn-danger">Attack</button>
+            <button id="p1Defend" type="button" class="btn btn-primary">Primary</button>
+          </div>
+          <br>
+          <div>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#instructionsModal">Instructions</button>
+          </div>
         </div>
         <div class="col-md-6" id="game">
           
         </div>
         <div class="col-md-3 text-white" style="height: 570px; border: 2px solid white;">
-            player 2
+          <div class="d-flex justify-content-center h4">
+            PLAYER 2
+          </div>
+          <div>
+            Your Avatar is: <img src="./images/viking2.png" />
+          </div>
+          <br>
+          <div class="player2ProgressBar">
+            <progress id="p2PB" value="10" max="100"></progress>
+          </div>
+          <br>
+          <div>
+            <button id="p2Attack" type="button" class="btn btn-danger">Attack</button>
+            <button id="p2Defend" type="button" class="btn btn-primary">Primary</button>
+          </div>
+          <br>
+          <div>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#instructionsModal">Instructions</button>
+          </div>
         </div>
       </div>
     </div>

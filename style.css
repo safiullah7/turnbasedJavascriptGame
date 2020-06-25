@@ -95,3 +95,20 @@ body {
 .accessible {
   background-color: yellow;
 }
+
+progress {
+	appearance: none;
+	display: block;
+	width: 100%;
+	height: 1rem;
+	border: 0;
+}
+
+progress::-webkit-progress-bar {
+	background: lightgray;
+}
+
+progress::-webkit-progress-value {
+	background: #06c;
+	transition: width 2.5s ease-in-out;
+}
