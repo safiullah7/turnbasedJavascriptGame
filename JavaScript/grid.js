@@ -115,6 +115,8 @@ export default class Grid {
             cell.player = this.player1;
             cell.html.classList.add(this.player1.avatar);
             this.player1.cell.html.classList.add(this.player1.avatar);
+            if (cell.weapon != null)
+                this.SwapWeapons(cell, p);
             this.ActivateTurns('p2');
         } else if (p == 'p2') {
             this.player2.cell.html.classList.remove(this.player2.avatar);
@@ -123,9 +125,49 @@ export default class Grid {
             cell.player = this.player2;
             cell.html.classList.add(this.player2.avatar);
             this.player2.cell.html.classList.add(this.player2.avatar);
+            if (cell.weapon != null)
+                this.SwapWeapons(cell, p);
             this.ActivateTurns('p1');
         }
         
+    }
+
+    SwapWeapons(cell, p) {
+        let cellWeaponClass = cell.weapon.cssClass;
+        let player1WeaponClass;
+        let player2WeaponClass;
+        if ( typeof(this.player1.weapon) === "undefined" || this.player1.weapon === null ) {
+            player1WeaponClass = '';
+        } else {
+            player1WeaponClass = this.player1.weapon.cssClass;
+        }
+        if ( typeof(this.player2.weapon) === "undefined" || this.player2.weapon === null ) {
+            player2WeaponClass = '';
+        } else {
+            player2WeaponClass = this.player2.weapon.cssClass;
+        }
+        if (p == 'p1') {
+            let temp = this.player1.weapon;
+            this.player1.weapon = cell.weapon;
+            cell.weapon = temp;
+            cell.html.classList.remove(cellWeaponClass);
+            if (player1WeaponClass !== '')
+                cell.html.classList.add(player1WeaponClass);
+            this.player1.cell.html.classList.remove(cellWeaponClass);
+            if (player1WeaponClass !== '')
+                this.player1.cell.html.classList.add(player1WeaponClass);
+            // classnames in player.cell.html and cell.html needs to be updated
+        } else if (p == 'p2') {
+            let temp = this.player2.weapon;
+            this.player2.weapon = cell.weapon;
+            cell.weapon = temp;
+            cell.html.classList.remove(cellWeaponClass);
+            if (player2WeaponClass !== '')
+                cell.html.classList.add(player2WeaponClass);
+            this.player2.cell.html.classList.remove(cellWeaponClass);
+            if (player2WeaponClass !== '')
+                this.player2.cell.html.classList.add(player2WeaponClass);
+        }
     }
 
     HighlightAccessibleCells(cells) {
