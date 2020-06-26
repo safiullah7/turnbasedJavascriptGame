@@ -20,17 +20,53 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="instructionsModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="instructionsModalLabel">Instructions</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              ...
+              <div class="container">
+                <div class="row">
+                  <div>
+                    <img src="./images/arrow.png" /> has 10 points.
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div>
+                    <img src="./images/axe.png" /> has 15 points.
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div>
+                    <img src="./images/shield.png" /> has 5 points.
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div>
+                    <img src="./images/thor.png" /> has 20 points.
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <div class="container">
+                <div class="row">
+                  <div>
+                    <button id="p2Attack" type="button" class="btn btn-danger">Attack</button> will remove points from other player's health.
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div>
+                    <button id="p2Defend" type="button" class="btn btn-primary">Defend</button> will defend and halve the other players' attack power.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
