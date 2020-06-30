@@ -57,13 +57,13 @@
               <div class="container">
                 <div class="row">
                   <div>
-                    <button id="p2Attack" type="button" class="btn btn-danger">Attack</button> will remove points from other player's health.
+                    <button id="AttackInstructions" type="button" class="btn btn-danger">Attack</button> will remove points from other player's health.
                   </div>
                 </div>
                 <hr>
                 <div class="row">
                   <div>
-                    <button id="p2Defend" type="button" class="btn btn-primary">Defend</button> will defend and halve the other players' attack power.
+                    <button id="DefendInstructions" type="button" class="btn btn-primary">Defend</button> will defend and halve the other players' attack power.
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@
       </div>
       <h1 class="d-flex justify-content-center display-3">Turn based game</h1>
       <div class="row">
-        <div class="col-md-3 text-white" style="height: 570px; border: 2px solid white;">
+        <div id="player1area" class="col-md-3 text-white" style="height: 570px; border: 2px solid white;">
           <div class="d-flex justify-content-center h4">
             PLAYER 1
           </div>
@@ -82,7 +82,7 @@
           </div>
           <br>
           <div class="player1ProgressBar">
-            <progress id="p1PB" value="10" max="100"></progress>
+            <progress id="p1PB" value="100" max="100"></progress>
           </div>
           <br>
           <div>
@@ -97,7 +97,7 @@
         <div class="col-md-6" id="game">
           
         </div>
-        <div class="col-md-3 text-white" style="height: 570px; border: 2px solid white;">
+        <div id="player2area" class="col-md-3 text-white" style="height: 570px; border: 2px solid white;">
           <div class="d-flex justify-content-center h4">
             PLAYER 2
           </div>
@@ -106,7 +106,7 @@
           </div>
           <br>
           <div class="player2ProgressBar">
-            <progress id="p2PB" value="10" max="100"></progress>
+            <progress id="p2PB" value="100" max="100"></progress>
           </div>
           <br>
           <div>

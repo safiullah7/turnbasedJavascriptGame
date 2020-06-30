@@ -117,7 +117,12 @@ export default class Grid {
             this.player1.cell.html.classList.add(this.player1.avatar);
             if (cell.weapon != null)
                 this.SwapWeapons(cell, p);
-            this.ActivateTurns('p2');
+            // if both players adjacent, trigger fight
+            if (this.CheckTwoCellsAdjacent(this.player1.cell, this.player2.cell))
+                this.TriggerFight('p2');
+            // else other player's turn
+            else
+                this.ActivateTurns('p2');
         } else if (p == 'p2') {
             this.player2.cell.html.classList.remove(this.player2.avatar);
             this.player2.cell.player = null;
@@ -127,9 +132,32 @@ export default class Grid {
             this.player2.cell.html.classList.add(this.player2.avatar);
             if (cell.weapon != null)
                 this.SwapWeapons(cell, p);
-            this.ActivateTurns('p1');
+            // if both players adjacent, trigger fight
+            if (this.CheckTwoCellsAdjacent(this.player1.cell, this.player2.cell))
+                this.TriggerFight('p1');
+            // else other player's turn
+            else
+                this.ActivateTurns('p1');
         }
         
+    }
+
+    TriggerFight(p) {
+        if (p == 'p1') {
+            // disable p2's and buttons
+            $('#p2Attack').prop('disabled', true);
+
+            // enable p1's and buttons
+            $('#p1Attack').prop('disabled', false);
+        } else if (p == 'p2') {
+            // disable p1's and buttons
+            $('#p1Attack').prop('disabled', true);
+            
+            // enable p2's and buttons
+            $('#p2Attack').prop('disabled', false);
+        }
+        $('#p1Attack').attr('data-weapon', this.player1.weapon.cssClass);
+        $('#p2Attack').attr('data-weapon', this.player2.weapon.cssClass);
     }
 
     SwapWeapons(cell, p) {
