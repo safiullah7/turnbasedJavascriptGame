@@ -268,7 +268,7 @@ export default class Grid {
         }
         if (p == 'p1') {
             let temp = this.player1.weapon;
-            this.player1.weapon = cell.weapon;
+            this.player1.setPlayerWeapon(cell.weapon);
             cell.weapon = temp;
             cell.html.classList.remove(cellWeaponClass);
             if (player1WeaponClass !== '')
@@ -276,10 +276,10 @@ export default class Grid {
             this.player1.cell.html.classList.remove(cellWeaponClass);
             if (player1WeaponClass !== '')
                 this.player1.cell.html.classList.add(player1WeaponClass);
-            // classnames in player.cell.html and cell.html needs to be updated
+            
         } else if (p == 'p2') {
             let temp = this.player2.weapon;
-            this.player2.weapon = cell.weapon;
+            this.player2.setPlayerWeapon(cell.weapon);
             cell.weapon = temp;
             cell.html.classList.remove(cellWeaponClass);
             if (player2WeaponClass !== '')

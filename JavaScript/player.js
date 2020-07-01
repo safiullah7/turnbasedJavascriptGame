@@ -17,8 +17,17 @@ export default class Player {
     }
 
     setPlayerWeapon(weapon) {
+        this.UpdatePlayerWeaponSidebar(weapon.cssClass)
         this.weapon = new Weapon();
         this.weapon.setWeaponTypeFromClass(weapon.cssClass);
+    }
+
+    UpdatePlayerWeaponSidebar(newWeaponClass) {
+        let playerSidebarClientId = this.name + 'weapon';
+        if (this.weapon != null && this.weapon.cssClass != '') {
+            $('#' + playerSidebarClientId).removeClass(this.weapon.cssClass);
+        }
+        $('#' + playerSidebarClientId).addClass(newWeaponClass);
     }
 
     UpdatePlayerHealthBar() {
