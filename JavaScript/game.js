@@ -12,4 +12,22 @@ export default class Game {
         let grid = new Grid(rows, columns, player1, player2, this.status);
         grid.Generate();
     }
+    UpdateProgressBar(id, power) {
+        if (power < 0)
+            power = 0;
+        $('#' + id).val(power);
+        if (power == 0 && id.includes('p1')) {
+            if (confirm("Player 2 won! To restart game, press OK")) {
+                location.reload();
+              } else {
+                txt = "You pressed Cancel!";
+            }
+        } else if (power == 0 && id.includes('p2')) {
+            if (confirm("Player 1 won! To restart game, press OK")) {
+                location.reload();
+              } else {
+                txt = "You pressed Cancel!";
+            }
+        }
+    }
 }

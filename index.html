@@ -82,16 +82,20 @@
           </div>
           <br>
           <div class="player1ProgressBar">
-            <progress id="p1PB" value="100" max="100"></progress>
+            <progress id="P1PB" value="100" max="100"></progress>
           </div>
           <br>
           <div>
-            <button id="p1Attack" type="button" class="btn btn-danger">Attack</button>
-            <button id="p1Defend" type="button" class="btn btn-primary">Defend</button>
+            <button id="p1Attack" type="button" class="btn btn-danger" disabled>Attack</button>
+            <button id="p1Defend" type="button" class="btn btn-primary" disabled>Defend</button>
           </div>
           <br>
           <div>
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#instructionsModal">Instructions</button>
+          </div>
+          <br>
+          <div id="p1weapon" style="max-width: 500px; height: 100px;">
+            
           </div>
         </div>
         <div class="col-md-6" id="game">
@@ -106,16 +110,20 @@
           </div>
           <br>
           <div class="player2ProgressBar">
-            <progress id="p2PB" value="100" max="100"></progress>
+            <progress id="P2PB" value="100" max="100"></progress>
           </div>
           <br>
           <div>
-            <button id="p2Attack" type="button" class="btn btn-danger">Attack</button>
-            <button id="p2Defend" type="button" class="btn btn-primary">Defend</button>
+            <button id="p2Attack" type="button" class="btn btn-danger" disabled>Attack</button>
+            <button id="p2Defend" type="button" class="btn btn-primary" disabled>Defend</button>
           </div>
           <br>
           <div>
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#instructionsModal">Instructions</button>
+          </div>
+          <br>
+          <div id="p2weapon" style="max-width: 500px; height: 100px;">
+            
           </div>
         </div>
       </div>

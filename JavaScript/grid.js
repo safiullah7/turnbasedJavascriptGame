@@ -1,5 +1,6 @@
 import Cell from './cell.js';
 import Weapon from './weapon.js';
+import Game from './game.js';
 
 export default class Grid {
     constructor(rows, columns, p1, p2, status) {
@@ -146,18 +147,109 @@ export default class Grid {
         if (p == 'p1') {
             // disable p2's and buttons
             $('#p2Attack').prop('disabled', true);
+            $('#p2Defend').prop('disabled', true);
 
             // enable p1's and buttons
             $('#p1Attack').prop('disabled', false);
+            $('#p1Defend').prop('disabled', false);
         } else if (p == 'p2') {
             // disable p1's and buttons
             $('#p1Attack').prop('disabled', true);
+            $('#p1Defend').prop('disabled', true);
             
             // enable p2's and buttons
             $('#p2Attack').prop('disabled', false);
+            $('#p2Defend').prop('disabled', false);
         }
-        $('#p1Attack').attr('data-weapon', this.player1.weapon.cssClass);
-        $('#p2Attack').attr('data-weapon', this.player2.weapon.cssClass);
+        // $('#p1Attack').attr('data-weapon', this.player1.weapon.cssClass);
+        // $('#p2Attack').attr('data-weapon', this.player2.weapon.cssClass);
+
+        this.BindFightListeners();
+    }
+
+    BindFightListeners() {
+        $('#p1Attack').click((e) => {
+            e.preventDefault();
+            // your statements;
+            let p1weaponPower = 0;
+            if (this.player1.weapon != null){
+                // p1weapon = $('#p1Attack').data("weapon");
+                p1weaponPower = this.player1.weapon.damage;
+            } else {
+                p1weaponPower = 3;
+            }
+            if (this.player2.defending) {
+                p1weaponPower /= 2;
+                this.player2.defending = false;
+            }
+            // player2Health = player2Health - p1weaponPower;
+            this.player2.health -= p1weaponPower;
+            this.player2.UpdatePlayerHealthBar();
+            $('#p1Attack').prop('disabled', true);
+            $('#p1Defend').prop('disabled', true);
+        
+            $('#p2Attack').prop('disabled', false);
+            $('#p2Defend').prop('disabled', false);
+            this.CheckWinning();
+        });
+        
+        $('#p2Attack').on('click', (e) => {
+            e.preventDefault();
+            // your statements;
+            let p2weaponPower = 0
+            if (this.player2.weapon != null) {
+                // p2weapon = $('#p2Attack').data("weapon");
+                p2weaponPower = this.player2.weapon.damage;
+            } else {
+                p2weaponPower = 3;
+            }
+            if (this.player1.defending) {
+                p2weaponPower /= 2;
+                this.player1.defending = false;
+            }
+            this.player1.health -= p2weaponPower;
+            this.player1.UpdatePlayerHealthBar();
+            $('#p2Attack').prop('disabled', true);
+            $('#p2Defend').prop('disabled', true);
+        
+            $('#p1Attack').prop('disabled', false);
+            $('#p1Defend').prop('disabled', false);
+            this.CheckWinning();
+        });
+        $('#p1Defend').click((e) => {
+            e.preventDefault();
+
+            this.player1.defending = true;
+            
+            $('#p1Attack').prop('disabled', true);
+            $('#p1Defend').prop('disabled', true);
+        
+            $('#p2Attack').prop('disabled', false);
+            $('#p2Defend').prop('disabled', false);
+        });
+        $('#p2Defend').on('click', (e) => {
+            e.preventDefault();
+
+            this.player2.defending = true;
+            
+            $('#p2Attack').prop('disabled', true);
+            $('#p2Defend').prop('disabled', true);
+        
+            $('#p1Attack').prop('disabled', false);
+            $('#p1Defend').prop('disabled', false);
+        });
+    }
+
+    CheckWinning() {
+        if (this.player1.health <= 0) {
+            if (confirm("Player 2 won! To restart game, press OK")) {
+                location.reload();
+            }
+        } else if (this.player2.health <= 0) {
+            if (confirm("Player 1 won! To restart game, press OK")) {
+                location.reload();
+            }
+        }
     }
 
     SwapWeapons(cell, p) {

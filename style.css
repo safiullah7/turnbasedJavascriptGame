@@ -110,7 +110,7 @@ progress::-webkit-progress-bar {
 
 progress::-webkit-progress-value {
 	background: #06c;
-	transition: width 2.5s ease-in-out;
+	transition: width 0.5s ease-in-out;
 }
 
 .greyish {
