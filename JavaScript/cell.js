@@ -29,7 +29,6 @@ export default class Cell {
     setWeapon(className) {
         this.weapon = new Weapon()
         this.weapon.setWeaponTypeFromClass(className);
-        console.log(className);
         $(this.html).addClass(className);
     }
     setPlayer(cssClass) {
