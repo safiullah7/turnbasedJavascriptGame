@@ -242,13 +242,18 @@ export default class Grid {
 
     CheckWinning() {
         if (this.player1.health <= 0) {
-            if (confirm("Player 2 won! To restart game, press OK")) {
-                location.reload();
-            }
+            setTimeout(function(){ 
+                if (confirm("Player 2 won! To restart game, press OK")) {
+                    location.reload();
+                }
+            }, 1000);
+            
         } else if (this.player2.health <= 0) {
-            if (confirm("Player 1 won! To restart game, press OK")) {
-                location.reload();
-            }
+            setTimeout(function(){ 
+                if (confirm("Player 1 won! To restart game, press OK")) {
+                    location.reload();
+                }
+            }, 1000);
         }
     }
 
