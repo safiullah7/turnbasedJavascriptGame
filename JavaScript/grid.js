@@ -1,6 +1,5 @@
 import Cell from './cell.js';
 import Weapon from './weapon.js';
-import Game from './game.js';
 
 export default class Grid {
     constructor(rows, columns, p1, p2, status) {
@@ -17,23 +16,16 @@ export default class Grid {
         for (let i = 0; i < this.rows * this.columns; i++) {
             let cell = new Cell(this.getHeight(),this.getWidth(), i);
             let cellElement = cell.Generate(i);
-            // console.log(cellElement);
             this.arrayCells.push(cell);
             $('#game').append(cellElement);
         }
         this.RandomBlockages();
         this.RandomWeapons();
         this.RandomPlayers();
-        //this.ActivateTurns(game);
         this.GetCellsSorroundingPlayer(this.player1.cell, 'p1');
     }
 
     ActivateTurns(p) {
-        // console.log(game);
-        // while (game.status) {
-        //     this.GetCellsSorroundingPlayer(this.player1.cell);
-        //     this.GetCellsSorroundingPlayer(this.player2.cell);
-        // }
         if (p == 'p1') {
             this.GetCellsSorroundingPlayer(this.player1.cell, p);
         } else if (p == 'p2') {
@@ -61,7 +53,6 @@ export default class Grid {
             let cell1 = cell.x - 1 ;
             let cell2 = cell.x - 2;
             let cell3 = cell.x - 3;
-            // issue here somewhere.
             cells = this.totalCells.filter(c => c.y == cell.y && ([c.x].includes(cell1) || [c.x].includes(cell2) || [c.x].includes(cell3)));
             cells = this.CheckAccessibleCellsBlockerOrPlayer(cells.reverse());
             // console.log(cells);
@@ -161,8 +152,6 @@ export default class Grid {
             $('#p2Attack').prop('disabled', false);
             $('#p2Defend').prop('disabled', false);
         }
-        // $('#p1Attack').attr('data-weapon', this.player1.weapon.cssClass);
-        // $('#p2Attack').attr('data-weapon', this.player2.weapon.cssClass);
 
         this.BindFightListeners();
     }
@@ -170,10 +159,9 @@ export default class Grid {
     BindFightListeners() {
         $('#p1Attack').click((e) => {
             e.preventDefault();
-            // your statements;
+            
             let p1weaponPower = 0;
             if (this.player1.weapon != null){
-                // p1weapon = $('#p1Attack').data("weapon");
                 p1weaponPower = this.player1.weapon.damage;
             } else {
                 p1weaponPower = 3;
@@ -182,7 +170,6 @@ export default class Grid {
                 p1weaponPower /= 2;
                 this.player2.defending = false;
             }
-            // player2Health = player2Health - p1weaponPower;
             this.player2.health -= p1weaponPower;
             this.player2.UpdatePlayerHealthBar();
             $('#p1Attack').prop('disabled', true);
@@ -195,10 +182,9 @@ export default class Grid {
         
         $('#p2Attack').on('click', (e) => {
             e.preventDefault();
-            // your statements;
+            
             let p2weaponPower = 0
             if (this.player2.weapon != null) {
-                // p2weapon = $('#p2Attack').data("weapon");
                 p2weaponPower = this.player2.weapon.damage;
             } else {
                 p2weaponPower = 3;
@@ -364,12 +350,9 @@ export default class Grid {
 
     getWidth() {
         return 100 / this.columns + '%';
-        //return "60px";
     }
 
     getHeight() {
         return 100 / this.rows + '%';
-
-        //return "60px";
     }
 }
